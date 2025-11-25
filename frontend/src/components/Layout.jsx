@@ -5,7 +5,7 @@ function Layout({ children }) {
         {children}
       </div>
       <footer className="app-footer">
-        <span>Powered by AQI provider via backend service</span>
+        <span>Powered by AQI provider</span>
       </footer>
     </div>
   );
