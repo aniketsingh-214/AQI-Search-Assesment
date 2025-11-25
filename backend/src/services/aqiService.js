@@ -14,7 +14,6 @@ function classifyAqi(aqi) {
 }
 
 function normalizeResponse(providerData) {
-  // Based on AQICN structure: { data: { aqi, city, dominentpol, iaqi, time, attributions } }
   const data = providerData?.data;
   if (!data) {
     throw new Error('Invalid AQI data from provider');
@@ -63,19 +62,15 @@ async function fetchAqiFromProvider(city) {
 async function getCityAqi(city) {
   const key = city.toLowerCase().trim();
 
-  // Check cache
   const cached = aqiCache.get(key);
   if (cached) {
     return { ...cached, fromCache: true };
   }
 
-  // Fetch from provider
   const normalized = await fetchAqiFromProvider(key);
 
-  // Save in cache
   aqiCache.set(key, normalized);
 
-  // Save log in DB (fire and forget)
   SearchLog.create({
     city: normalized.city,
     aqi: normalized.aqi,

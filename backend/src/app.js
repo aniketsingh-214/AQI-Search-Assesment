@@ -18,10 +18,8 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// API routes
 app.use('/api/aqi', aqiRoutes);
 
-// 404 + error handling
 app.use(notFound);
 app.use(errorHandler);
 

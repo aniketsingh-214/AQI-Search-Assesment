@@ -4,7 +4,7 @@ class LRUCache {
   constructor(maxEntries, ttlMs) {
     this.maxEntries = maxEntries;
     this.ttlMs = ttlMs;
-    this.map = new Map(); // key -> { value, expiresAt }
+    this.map = new Map(); 
   }
 
   _isExpired(entry) {
@@ -18,7 +18,7 @@ class LRUCache {
       this.map.delete(key);
       return null;
     }
-    // refresh LRU ordering
+  
     this.map.delete(key);
     this.map.set(key, entry);
     return entry.value;
